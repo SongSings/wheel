@@ -33,7 +33,8 @@ class ConsumerTest{
         Consumer<Integer> consumer3 = System.out::println;
         consumer3.accept(6);
 
-        // 匿名内部类实例 等同于上面的实例
+        // 匿名内部类实例 等同于上面的lambda实例
+        // 1
         class ConsumerImpl<T> implements Consumer<T>{
             @Override
             public void accept(T t) {
@@ -41,5 +42,12 @@ class ConsumerTest{
             }
         }
         new ConsumerImpl<Integer>().accept(7777);
+        // 2
+        new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) {
+                System.out.println("aLong = " + aLong);
+            }
+        }.accept(9L);
     }
 }
